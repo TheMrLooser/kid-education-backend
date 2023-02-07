@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .mainContainer {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      .wrapper {
+        width: 100%;
+        max-width: 80%;
+      }
+      .logoContianer {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      
+      .heading {
+        font-size: 25px;
+      }
+      .element{
+        display: flex;
+        align-items: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="mainContainer" id="mainContainer">
+      <div class="wrapper">
+        <div class="logoContianer">
+        </div>
+        <h3 class="heading">New Client Requested for Contact</h3>
+        <div class="detailContainer">
+            <div class="element"><h3>Name:</h3> {{name}}</div>
+            <div class="element"><h3>Email:</h3>{{email}}</div>
+            <div class="element"><h3>Phone Number:</h3>{{phone}}</div>
+            <div class="element"><h3>City:</h3>{{city}}</div>
+            <div class="element"><h3> Message:</h3>{{message}}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

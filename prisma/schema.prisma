@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://admin:PVwroD7Q4emOn7LjZOhYC0MFQxxq6L6I@dpg-cetbq19a6gdut0olgtkg-a.oregon-postgres.render.com/kid_project_database"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String
+  role      String   @default("User")
+  myMourse  MyCourse[]
+  token     String?  @unique
+  createdAt DateTime @default(now())
+  tags      String[]
+  cart      Cart[]
+  contact   Contact[]
+}
+
+model MyCourse{
+  id         String  @id @default(uuid())
+  courseId   String  @unique
+  courseName String
+  auther     String?
+  img        Bytes?
+  price      Int
+  rating     Float?  @default(0.0)
+  userId     String
+  user       User    @relation(fields: [userId], references: [id])
+
+
+}
+model Cart {
+  id         String  @id @default(uuid())
+  courseId   String  @unique
+  courseName String
+  auther     String?
+  img        Bytes?
+  price      Int
+  rating     Float?  @default(0.0)
+  userId     String
+  user       User    @relation(fields: [userId], references: [id])
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  courseName  String
+  subName     String?
+  subTitle    String
+  auther      String?
+  img         Bytes
+  description String?
+  price       Int
+  catagory    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  rating      Float?   @default(0.0)
+  noOfRating  Int?     @default(0)
+  tags        String[]
+  video       Video[]
+}
+
+model Video {
+  id          String   @id @default(uuid())
+  title       String?
+  description String?
+  videoLink   String
+  courseId    String
+  createdAt   DateTime @default(now())
+  course      Course   @relation(fields: [courseId], references: [id])
+}
+
+model Payment {
+  id        String   @id @default(uuid())
+  paymentId String
+  courseId  String[]
+  amount    Int
+  orderId   String
+  userId    String
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String   
+  name      String
+  email     String
+  phone     String
+  message   String
+  city      String
+  status    String @default("UnResolved")
+}
